@@ -1,37 +1,77 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { colors, fontSize } from '@/constants/tokens'
+import { FontAwesome } from '@expo/vector-icons'
+import { BlurView } from 'expo-blur'
+import { Tabs } from 'expo-router'
+import { StyleSheet } from 'react-native'
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+const TabsNavigation = () => {
+	return (
+		<Tabs
+			screenOptions={{
+				tabBarActiveTintColor: colors.primary,
+				tabBarLabelStyle: {
+					fontSize: fontSize.xs,
+					fontWeight: '500',
+				},
+				headerShown: false,
+				tabBarStyle: {
+					position: 'absolute',
+					borderTopLeftRadius: 20,
+					borderTopRightRadius: 20,
+					borderTopWidth: 0,
+					paddingTop: 8,
+				},
+				tabBarBackground: () => (
+					<BlurView
+						intensity={95}
+						style={{
+							...StyleSheet.absoluteFillObject,
+							overflow: 'hidden',
+							borderTopLeftRadius: 20,
+							borderTopRightRadius: 20,
+						}}
+					/>
+				),
+			}}
+		>
+			<Tabs.Screen
+				name="Home"
+				options={{
+					title: 'Inicio',
+					tabBarIcon: ({ color }) => (
+						<FontAwesome name="home" size={20} color={color}></FontAwesome>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="Search"
+				options={{
+					title: 'Buscar',
+					tabBarIcon: ({ color }) => (
+						<FontAwesome name="search" size={20} color={color}></FontAwesome>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="Users"
+				options={{
+					title: 'Usuario',
+					tabBarIcon: ({ color }) => (
+						<FontAwesome name="user" size={20} color={color}></FontAwesome>
+					),
+				}}
+			/>
+			<Tabs.Screen
+				name="(mangas)"
+				options={{
+					title: 'Mangas',
+					tabBarIcon: ({ color }) => (
+						<FontAwesome name="book" size={20} color={color}></FontAwesome>
+					),
+				}}
+			/>
+		</Tabs>
+	)
 }
+
+export default TabsNavigation

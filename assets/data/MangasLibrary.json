@@ -1,0 +1,21 @@
+[{
+    "url":"http://example.com/as",
+    "title":"Berserk",
+    "autor":"KentaroMiura",
+    "rating":9,
+    "chapter_count":"365"
+},
+{
+    "url":"http://example.com/as",
+    "title":"One piece",
+    "autor":"Eichiro Oda",
+    "rating":9,
+    "chapter_count":"1255"
+},
+{
+    "url":"http://example.com/as",
+    "title":"Naruto",
+    "autor":"Masashi kishimoto",
+    "rating":9,
+    "chapter_count":"800"
+}]
