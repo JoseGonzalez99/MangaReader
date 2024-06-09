@@ -28,26 +28,37 @@ const SmallMangaCard = ({ title, image }) => {
 }
 
 const Home = () => {
-	const lastReadManga = {
-		title: 'Attack on Titan',
-		rating: 4.8,
-		image:
-			'https://4.bp.blogspot.com/-bFI3nnZiBy4/WIpe-AqSKqI/AAAAAAAAALs/25vg-stsz2oTUVVP7-11HqHJZxMGwYNwgCEw/s1600/shingeki_no_kyojin_poster_by_thebellealexandra-d75f1z1.png',
+	const mangaHeaderSeccion = {
+		title: 'Berserk',
+		rating: 4.9,
+		image: 'https://m.media-amazon.com/images/I/71lnvXSiITL._AC_UF1000,1000_QL80_.jpg',
 	}
 
-	const mangaHistory = [
+	const volumenes = [
 		{
-			title: 'Naruto',
-			image: 'https://th.bing.com/th/id/OIP.EjIl-g-wSybkVtNApisWMwHaLH?rs=1&pid=ImgDetMain',
-		},
-		{
-			title: 'One Piece',
-			image: 'https://th.bing.com/th/id/OIP.de93te5wkHMrpY37jdetjAHaLG?rs=1&pid=ImgDetMain',
-		},
-		{
-			title: 'Bleach',
+			title: 'Tomo1',
 			image:
-				'https://th.bing.com/th/id/R.98dffbb5e325f0b41c817bda7bd9cda2?rik=11AIeHrwXfNO2A&riu=http%3a%2f%2fes.web.img3.acsta.net%2fr_1280_720%2fpictures%2f16%2f02%2f03%2f17%2f47%2f271248.jpg&ehk=1TFFCPiuhlVB70HSMlpD0YbCZzMEraquP3KvYGjjUmw%3d&risl=&pid=ImgRaw&r=0',
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp',
+		},
+		{
+			title: 'Tomo 2',
+			image:
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763015/mangas/Berserk%20-%20Tomo%2002/c0-4/000.webp',
+		},
+		{
+			title: 'Tomo 3',
+			image:
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714760499/mangas/Berserk%20-%20Tomo%2003/c0-6/Berserk_v0_000.webp',
+		},
+		{
+			title: 'Tomo 4',
+			image:
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763849/mangas/Berserk%20-%20Tomo%2004/c0-10/Berserk_v00_p000.webp',
+		},
+		{
+			title: 'Tomo 5',
+			image:
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714754393/mangas/Berserk%20-%20Tomo%2005/c0-15/000.webp',
 		},
 		// Más elementos aquí
 	]
@@ -56,12 +67,26 @@ const Home = () => {
 		<ScrollView style={styles.container}>
 			<View style={styles.section}>
 				<Text style={styles.sectionTitle}>Último leído</Text>
-				<BigMangaCard {...lastReadManga} />
+				<BigMangaCard {...mangaHeaderSeccion} />
+			</View>
+
+			<View style={styles.section}>
+				<Text style={styles.sectionTitle}>Sinopsis</Text>
+				<Text style={styles.sinopsistext}>
+					La historia está ambientada en una época con tintes de la Europa medieval y renacentista,
+					en la cual se cuenta la vida de Guts (cuyo nombre fue traducido como Gatsu en las primeras
+					ediciones en castellano), un mercenario huérfano que acompañado del elfo Puck, caza seres
+					demoníacos llamados apóstoles. La historia se divide en dos partes: la primera (que va del
+					volumen 4 al volumen 13) relata su niñez y juventud hasta cómo conoce a Griffith, líder de
+					un grupo mercenario llamado la «Banda del Halcón». La segunda parte (volúmenes del 1 al 3
+					y 14 al 41, publicándose) muestra su historia tras el fatídico Eclipse, la caza de los
+					apóstoles y su búsqueda de venganza contra Griffith.
+				</Text>
 			</View>
 			<View style={styles.section}>
-				<Text style={styles.sectionTitle}>Historial</Text>
+				<Text style={styles.sectionTitle}>Volumenes</Text>
 				<FlatList
-					data={mangaHistory}
+					data={volumenes}
 					renderItem={({ item }) => <SmallMangaCard {...item} />}
 					keyExtractor={(item, index) => index.toString()}
 					horizontal
@@ -127,6 +152,11 @@ const styles = StyleSheet.create({
 	},
 	bigCardRating: {
 		fontSize: 14,
+		color: '#fff',
+		marginLeft: 5,
+	},
+	sinopsistext: {
+		fontSize: 15,
 		color: '#fff',
 		marginLeft: 5,
 	},

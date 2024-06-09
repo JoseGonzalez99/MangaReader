@@ -13,7 +13,7 @@ const MangasScreen = () => {
 					paddingHorizontal: screenPadding.horizontal,
 				}}
 			>
-				<TracksList scrollEnabled={false}></TracksList>
+				<TracksList scrollEnabled={true}></TracksList>
 			</ScrollView>
 		</View>
 	)
