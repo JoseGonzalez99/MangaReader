@@ -1,7 +1,7 @@
 import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
 import React from 'react'
-import { Button, FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 const BigMangaCard = ({ title, rating, image }) => {
 	return (
@@ -28,77 +28,45 @@ const SmallMangaCard = ({ title, image }) => {
 }
 
 const Home = () => {
-	const mangaHeaderSeccion = {
-		title: 'Berserk',
+	const volumenportada = {
+		title: 'Berserk- Tomo1',
 		rating: 4.9,
-		image: 'https://m.media-amazon.com/images/I/71lnvXSiITL._AC_UF1000,1000_QL80_.jpg',
+		image:
+			'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp',
 	}
 
-	const mangaSinopsis =
+	const volumenDescription =
 		'La historia está ambientada en una época con tintes de la Europa medieval y renacentista,en la cual se cuenta la vida de Guts, un mercenario acompañado del elfo Puck, cazando seres demoníacos llamados apóstoles.'
-	const volumenes = [
+	const chapters = [
 		{
-			title: 'Tomo1',
+			title: 'Capitulo 1',
 			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp',
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756366/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_002.webp',
 		},
 		{
-			title: 'Tomo 2',
+			title: 'Capitulo 2',
 			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763015/mangas/Berserk%20-%20Tomo%2002/c0-4/000.webp',
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756224/mangas/Berserk%20-%20Tomo%2001/c0-2/Berserk_v1_100.webp',
 		},
 		{
-			title: 'Tomo 3',
+			title: 'Capitulo 3',
 			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714760499/mangas/Berserk%20-%20Tomo%2003/c0-6/Berserk_v0_000.webp',
+				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756417/mangas/Berserk%20-%20Tomo%2001/c0-3/Berserk_v1_167.webp',
 		},
-		{
-			title: 'Tomo 4',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763849/mangas/Berserk%20-%20Tomo%2004/c0-10/Berserk_v00_p000.webp',
-		},
-		{
-			title: 'Tomo 5',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714754393/mangas/Berserk%20-%20Tomo%2005/c0-15/000.webp',
-		},
-		// Más elementos aquí
 	]
 
 	return (
 		<ScrollView style={styles.container}>
 			{/*Portada del manga */}
 			<View style={styles.section}>
-				<BigMangaCard {...mangaHeaderSeccion} />
-			</View>
-
-			{/*Buttons secciones Favoritos y readerbutton */}
-			<View style={styles.buttonSection}>
-				<Button
-					title="Favorito"
-					onPress={() => {
-						console.log('Hola')
-					}}
-				></Button>
-				<Button
-					title="Leer"
-					onPress={() => {
-						console.log('Hola')
-					}}
-				></Button>
-			</View>
-
-			{/*Sinopsis del manga */}
-			<View style={styles.section}>
-				<Text style={styles.sectionTitle}>Sinopsis</Text>
-				<Text style={styles.sinopsistext}>{mangaSinopsis}</Text>
+				<BigMangaCard {...volumenportada} />
 			</View>
 
 			{/*Volumenes del manga */}
 			<View style={styles.section}>
-				<Text style={styles.sectionTitle}>Volumenes</Text>
+				<Text style={styles.sectionTitle}>Capitulos</Text>
 				<FlatList
-					data={volumenes}
+					data={chapters}
 					renderItem={({ item }) => <SmallMangaCard {...item} />}
 					keyExtractor={(item, index) => index.toString()}
 					horizontal

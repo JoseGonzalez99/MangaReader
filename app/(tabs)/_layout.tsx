@@ -1,14 +1,13 @@
 import { colors, fontSize } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
-import { BlurView } from 'expo-blur'
 import { Tabs } from 'expo-router'
-import { StyleSheet } from 'react-native'
 
 const TabsNavigation = () => {
 	return (
 		<Tabs
 			screenOptions={{
-				tabBarActiveTintColor: colors.primary,
+				tabBarInactiveTintColor: colors.secundary,
+				tabBarActiveTintColor: colors.white,
 				tabBarLabelStyle: {
 					fontSize: fontSize.xs,
 					fontWeight: '500',
@@ -16,23 +15,17 @@ const TabsNavigation = () => {
 				headerShown: false,
 				tabBarStyle: {
 					position: 'absolute',
-					borderTopLeftRadius: 20,
-					borderTopRightRadius: 20,
+					backgroundColor: colors.primary,
+					borderTopLeftRadius: 12,
+					borderTopRightRadius: 12,
+					borderBottomLeftRadius: 12,
+					borderBottomRightRadius: 12,
 					borderTopWidth: 0,
-					paddingTop: 8,
+					paddingTop: 5,
+					paddingBottom: 5,
+					marginBottom: 20,
+					height: 60,
 				},
-				tabBarBackground: () => (
-					<BlurView
-						intensity={90}
-						style={{
-							...StyleSheet.absoluteFillObject,
-							backgroundColor: colors.background,
-							overflow: 'hidden',
-							borderTopLeftRadius: 20,
-							borderTopRightRadius: 20,
-						}}
-					/>
-				),
 			}}
 		>
 			<Tabs.Screen
@@ -53,6 +46,17 @@ const TabsNavigation = () => {
 					),
 				}}
 			/>
+
+			<Tabs.Screen
+				name="reader"
+				options={{
+					title: 'Reader',
+					tabBarIcon: ({ color }) => (
+						<FontAwesome name="book" size={20} color={color}></FontAwesome>
+					),
+				}}
+			/>
+
 			<Tabs.Screen
 				name="Users"
 				options={{
@@ -62,10 +66,11 @@ const TabsNavigation = () => {
 					),
 				}}
 			/>
+
 			<Tabs.Screen
 				name="(mangas)"
 				options={{
-					title: 'Mangas',
+					title: 'List',
 					tabBarIcon: ({ color }) => (
 						<FontAwesome name="book" size={20} color={color}></FontAwesome>
 					),
