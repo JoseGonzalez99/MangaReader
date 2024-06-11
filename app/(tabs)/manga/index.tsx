@@ -1,6 +1,9 @@
+import BottomDrawer from '@/components/BottomDrawer'
+import ReaderChapterSelector from '@/components/ReaderChapterSelector'
+import ReaderParams from '@/components/ReaderParams'
 import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 const BigMangaCard = ({ title, rating, image }) => {
@@ -28,6 +31,9 @@ const SmallMangaCard = ({ title, image }) => {
 }
 
 const Home = () => {
+	const [isReaderParamsDrawerVisible, setReaderParamasIsDrawerVisible] = useState(false)
+	const [isReaderChapterListDrawerVisible, setReaderChapterListDrawerVisible] = useState(false)
+
 	const mangaHeaderSeccion = {
 		title: 'Berserk',
 		rating: 4.9,
@@ -65,6 +71,14 @@ const Home = () => {
 		// Más elementos aquí
 	]
 
+	const toggleReaderParamDrawer = () => {
+		setReaderParamasIsDrawerVisible(!isReaderParamsDrawerVisible)
+	}
+
+	const toggleReaderChapterListDrawer = () => {
+		setReaderChapterListDrawerVisible(!isReaderChapterListDrawerVisible)
+	}
+
 	return (
 		<ScrollView style={styles.container}>
 			{/*Portada del manga */}
@@ -74,18 +88,8 @@ const Home = () => {
 
 			{/*Buttons secciones Favoritos y readerbutton */}
 			<View style={styles.buttonSection}>
-				<Button
-					title="Favorito"
-					onPress={() => {
-						console.log('Hola')
-					}}
-				></Button>
-				<Button
-					title="Leer"
-					onPress={() => {
-						console.log('Hola')
-					}}
-				></Button>
+				<Button title="Favoritos" onPress={toggleReaderParamDrawer}></Button>
+				<Button title="Leer" onPress={toggleReaderChapterListDrawer}></Button>
 			</View>
 
 			{/*Sinopsis del manga */}
@@ -110,6 +114,17 @@ const Home = () => {
 			<View style={styles.section}>
 				<Text style={styles.sectionTitle}></Text>
 			</View>
+
+			<BottomDrawer isVisible={isReaderParamsDrawerVisible} onClose={toggleReaderParamDrawer}>
+				<ReaderParams></ReaderParams>
+			</BottomDrawer>
+
+			<BottomDrawer
+				isVisible={isReaderChapterListDrawerVisible}
+				onClose={toggleReaderChapterListDrawer}
+			>
+				<ReaderChapterSelector></ReaderChapterSelector>
+			</BottomDrawer>
 		</ScrollView>
 	)
 }
