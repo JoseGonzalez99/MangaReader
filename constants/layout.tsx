@@ -11,7 +11,4 @@ export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
 	},
 	headerTintColor: colors.text,
 	headerShadowVisible: true,
-	headerStyle: {
-		backgroundColor: colors.background,
-	},
 }

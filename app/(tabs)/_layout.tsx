@@ -6,7 +6,7 @@ const TabsNavigation = () => {
 	return (
 		<Tabs
 			screenOptions={{
-				tabBarInactiveTintColor: colors.secundary,
+				tabBarInactiveTintColor: colors.white,
 				tabBarActiveTintColor: colors.white,
 				tabBarLabelStyle: {
 					fontSize: fontSize.xs,
@@ -16,14 +16,16 @@ const TabsNavigation = () => {
 				tabBarStyle: {
 					position: 'absolute',
 					backgroundColor: colors.primary,
-					borderTopLeftRadius: 12,
-					borderTopRightRadius: 12,
-					borderBottomLeftRadius: 12,
-					borderBottomRightRadius: 12,
+
+					borderTopLeftRadius: 32,
+					borderTopRightRadius: 32,
+					borderBottomLeftRadius: 32,
+					borderBottomRightRadius: 32,
 					borderTopWidth: 0,
 					paddingTop: 5,
 					paddingBottom: 5,
-					marginBottom: 20,
+					marginBottom: 15,
+					marginHorizontal: 20,
 					height: 60,
 				},
 			}}
@@ -33,7 +35,7 @@ const TabsNavigation = () => {
 				options={{
 					title: 'Inicio',
 					tabBarIcon: ({ color }) => (
-						<FontAwesome name="home" size={20} color={color}></FontAwesome>
+						<FontAwesome name="home" size={35} color={color}></FontAwesome>
 					),
 				}}
 			/>
@@ -42,7 +44,7 @@ const TabsNavigation = () => {
 				options={{
 					title: 'Buscar',
 					tabBarIcon: ({ color }) => (
-						<FontAwesome name="search" size={20} color={color}></FontAwesome>
+						<FontAwesome name="search" size={35} color={color}></FontAwesome>
 					),
 				}}
 			/>
@@ -52,7 +54,7 @@ const TabsNavigation = () => {
 				options={{
 					title: 'Usuario',
 					tabBarIcon: ({ color }) => (
-						<FontAwesome name="user" size={20} color={color}></FontAwesome>
+						<FontAwesome name="user" size={35} color={color}></FontAwesome>
 					),
 				}}
 			/>

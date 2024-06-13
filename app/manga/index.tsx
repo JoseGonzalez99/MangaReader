@@ -1,10 +1,18 @@
-import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-const BigMangaCoverCard = ({ title, rating, image }) => {
+import mangainfo from '@/assets/data/MangaMainHome.json'
+import { colors } from '@/constants/tokens'
+
+interface BigMangaCoverCardProps {
+	title: string
+	rating: number
+	image: string
+}
+
+const BigMangaCoverCard = ({ title, rating, image }: BigMangaCoverCardProps) => {
 	return (
 		<ImageBackground
 			source={{ uri: image }}
@@ -30,7 +38,12 @@ const BigMangaCoverCard = ({ title, rating, image }) => {
 	)
 }
 
-const SmallMangaCard = ({ title, image }) => {
+interface SmallCoverMangaCardProps {
+	title: string
+	image: string
+}
+
+const SmallMangaCard = ({ title, image }: SmallCoverMangaCardProps) => {
 	return (
 		<ImageBackground source={{ uri: image }} style={styles.smallCard} imageStyle={styles.cardImage}>
 			<View style={styles.smallCardContent}>
@@ -41,70 +54,43 @@ const SmallMangaCard = ({ title, image }) => {
 }
 
 const MangaScreen = () => {
-	const mangaHeaderSeccion = {
-		title: 'Berserk',
-		rating: 4.9,
-		image: 'https://m.media-amazon.com/images/I/71lnvXSiITL._AC_UF1000,1000_QL80_.jpg',
-	}
-
-	const mangaSinopsis =
-		'La historia está ambientada en una época con tintes de la Europa medieval y renacentista,en la cual se cuenta la vida de Guts, un mercenario acompañado del elfo Puck, cazando seres demoníacos llamados apóstoles.'
-	const volumenes = [
-		{
-			title: 'Tomo1',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp',
-		},
-		{
-			title: 'Tomo 2',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763015/mangas/Berserk%20-%20Tomo%2002/c0-4/000.webp',
-		},
-		{
-			title: 'Tomo 3',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714760499/mangas/Berserk%20-%20Tomo%2003/c0-6/Berserk_v0_000.webp',
-		},
-		{
-			title: 'Tomo 4',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714763849/mangas/Berserk%20-%20Tomo%2004/c0-10/Berserk_v00_p000.webp',
-		},
-		{
-			title: 'Tomo 5',
-			image:
-				'https://res.cloudinary.com/dlasojxtd/image/upload/v1714754393/mangas/Berserk%20-%20Tomo%2005/c0-15/000.webp',
-		},
-		// Más elementos aquí
-	]
-
 	return (
 		<ScrollView style={styles.container}>
-			{/*Portada del manga */}
+			<BigMangaCoverCard
+				title={mangainfo.title}
+				rating={mangainfo.rating}
+				image={mangainfo.bookcover}
+			/>
 
-			<BigMangaCoverCard {...mangaHeaderSeccion} />
+			{/*Buttons secciones Favoritos y readerbutton */}
+			<View style={styles.buttonSection}>
+				<Pressable onPress={() => console.log('iniciando lectura')} style={styles.favoriteButton}>
+					<FontAwesome name="heart" size={32} color={colors.white}></FontAwesome>
+				</Pressable>
+				<Pressable
+					onPress={() => console.log('Agregando en leer más tarde')}
+					style={styles.readButton}
+				>
+					<FontAwesome name="eye" size={32} color={colors.white}></FontAwesome>
+					<Text style={styles.buttonText}>Leer | Continuar</Text>
+				</Pressable>
+			</View>
 
 			{/*Sinopsis del manga */}
 			<View style={styles.section}>
-				<Text style={styles.sectionTitle}>Sinopsis</Text>
-				<Text style={styles.sinopsistext}>{mangaSinopsis}</Text>
+				<Text style={styles.sectionTitle}>Descripción</Text>
+				<Text style={styles.sinopsisText}>{mangainfo.description}</Text>
 			</View>
 
-			{/*Volumenes del manga */}
 			<View style={styles.section}>
-				<Text style={styles.sectionTitle}>Volumenes</Text>
-				<FlatList
-					data={volumenes}
-					renderItem={({ item }) => <SmallMangaCard {...item} />}
-					keyExtractor={(item, index) => index.toString()}
-					horizontal
-					showsHorizontalScrollIndicator={false}
-				/>
-			</View>
-
-			{/*Espacio al final para que le TabBar no solape. */}
-			<View style={styles.section}>
-				<Text style={styles.sectionTitle}></Text>
+				<Text style={styles.sectionTitle}>Volúmenes</Text>
+				<View style={styles.volumeContainer}>
+					{mangainfo.volumenes.map((item, index) => (
+						<View style={styles.volumeItem} key={index.toString()}>
+							<SmallMangaCard {...item} />
+						</View>
+					))}
+				</View>
 			</View>
 		</ScrollView>
 	)
@@ -118,8 +104,15 @@ const styles = StyleSheet.create({
 	section: {
 		padding: 10,
 		marginBottom: 20,
+		backgroundColor: colors.secundary,
+		borderRadius: 10,
 	},
-
+	buttonSection: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		padding: 10,
+	},
 	sectionTitle: {
 		fontSize: 25,
 		fontWeight: 'bold',
@@ -128,16 +121,16 @@ const styles = StyleSheet.create({
 	},
 	bigCard: {
 		height: 420,
-		borderRadius: 10,
+		borderRadius: 0,
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
 	},
 	smallCard: {
 		height: 150,
 		width: 100,
-		borderRadius: 10,
+		borderRadius: 5,
 		overflow: 'hidden',
-		marginRight: 10,
+		margin: 5,
 		justifyContent: 'flex-end',
 	},
 	cardImage: {
@@ -180,17 +173,46 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		marginLeft: 5,
 	},
-	sinopsistext: {
+	sinopsisText: {
 		fontSize: 15,
 		color: '#fff',
 		marginLeft: 5,
 	},
-	button: {
+	readButton: {
 		flex: 0,
 		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
 		padding: 8,
 		backgroundColor: colors.primary,
-		borderRadius: 5,
+		borderRadius: 35,
+	},
+	favoriteButton: {
+		flex: 0,
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
+		paddingLeft: 15,
+		paddingRight: 15,
+		backgroundColor: colors.primary,
+		borderRadius: 35,
+	},
+	buttonText: {
+		color: colors.text,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	buttonTextBold: {
+		color: colors.text,
+		fontSize: 22,
+		fontWeight: 'bold',
+	},
+	volumeContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+	},
+	volumeItem: {
+		width: '33.33%',
 	},
 })
 

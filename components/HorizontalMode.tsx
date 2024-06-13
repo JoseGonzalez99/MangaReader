@@ -49,16 +49,8 @@ const HorizontalMode = ({ imagesUrl, initialPos }: HorizontalModeProps) => {
 			<ImageViewer
 				imageUrls={imagesUrl.map((image) => ({ url: image.url }))}
 				index={initialPos}
-				renderHeader={() => (
-					<>
-						<HeaderReader></HeaderReader>
-					</>
-				)}
-				renderFooter={() => (
-					<>
-						<ReaderFooter></ReaderFooter>
-					</>
-				)}
+				renderHeader={() => <></>}
+				renderFooter={() => <></>}
 				renderIndicator={(currentIndex?: number, allSize?: number) => <></>}
 			></ImageViewer>
 		</>
