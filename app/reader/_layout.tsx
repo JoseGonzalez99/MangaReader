@@ -10,7 +10,6 @@ const ReaderScreenLayout = () => {
 					name="index"
 					options={{
 						headerShown: false,
-						headerTitle: 'DS',
 					}}
 				/>
 			</Stack>

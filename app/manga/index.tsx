@@ -1,18 +1,28 @@
-import BottomDrawer from '@/components/BottomDrawer'
-import ReaderChapterSelector from '@/components/ReaderChapterSelector'
-import ReaderParams from '@/components/ReaderParams'
 import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
-import React, { useState } from 'react'
-import { Button, FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
+import React from 'react'
+import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-const BigMangaCard = ({ title, rating, image }) => {
+const BigMangaCoverCard = ({ title, rating, image }) => {
 	return (
-		<ImageBackground source={{ uri: image }} style={styles.bigCard} imageStyle={styles.cardImage}>
+		<ImageBackground
+			source={{ uri: image }}
+			style={styles.bigCard}
+			imageStyle={styles.cardImage}
+			resizeMode="stretch"
+		>
+			<LinearGradient
+				// Transparencia en el centro y oscuro en los bordes
+				colors={['transparent', 'rgba(0,0,0,0.7)']}
+				start={{ x: 0.5, y: 0.6 }}
+				end={{ x: 0.5, y: 0.9 }}
+				style={styles.vignette}
+			/>
 			<View style={styles.bigCardContent}>
 				<Text style={styles.bigCardTitle}>{title}</Text>
 				<View style={styles.ratingContainer}>
-					<FontAwesome name="star" size={16} color="#FFD700" />
+					<FontAwesome name="star" size={28} color="#FFD700" />
 					<Text style={styles.bigCardRating}>{rating}</Text>
 				</View>
 			</View>
@@ -30,10 +40,7 @@ const SmallMangaCard = ({ title, image }) => {
 	)
 }
 
-const Home = () => {
-	const [isReaderParamsDrawerVisible, setReaderParamasIsDrawerVisible] = useState(false)
-	const [isReaderChapterListDrawerVisible, setReaderChapterListDrawerVisible] = useState(false)
-
+const MangaScreen = () => {
 	const mangaHeaderSeccion = {
 		title: 'Berserk',
 		rating: 4.9,
@@ -71,26 +78,11 @@ const Home = () => {
 		// Más elementos aquí
 	]
 
-	const toggleReaderParamDrawer = () => {
-		setReaderParamasIsDrawerVisible(!isReaderParamsDrawerVisible)
-	}
-
-	const toggleReaderChapterListDrawer = () => {
-		setReaderChapterListDrawerVisible(!isReaderChapterListDrawerVisible)
-	}
-
 	return (
 		<ScrollView style={styles.container}>
 			{/*Portada del manga */}
-			<View style={styles.section}>
-				<BigMangaCard {...mangaHeaderSeccion} />
-			</View>
 
-			{/*Buttons secciones Favoritos y readerbutton */}
-			<View style={styles.buttonSection}>
-				<Button title="Favoritos" onPress={toggleReaderParamDrawer}></Button>
-				<Button title="Leer" onPress={toggleReaderChapterListDrawer}></Button>
-			</View>
+			<BigMangaCoverCard {...mangaHeaderSeccion} />
 
 			{/*Sinopsis del manga */}
 			<View style={styles.section}>
@@ -114,17 +106,6 @@ const Home = () => {
 			<View style={styles.section}>
 				<Text style={styles.sectionTitle}></Text>
 			</View>
-
-			<BottomDrawer isVisible={isReaderParamsDrawerVisible} onClose={toggleReaderParamDrawer}>
-				<ReaderParams></ReaderParams>
-			</BottomDrawer>
-
-			<BottomDrawer
-				isVisible={isReaderChapterListDrawerVisible}
-				onClose={toggleReaderChapterListDrawer}
-			>
-				<ReaderChapterSelector></ReaderChapterSelector>
-			</BottomDrawer>
 		</ScrollView>
 	)
 }
@@ -132,25 +113,21 @@ const Home = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 10,
-		backgroundColor: '#000',
+		backgroundColor: colors.background,
 	},
 	section: {
-		marginBottom: 40,
+		padding: 10,
+		marginBottom: 20,
 	},
-	buttonSection: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-	},
+
 	sectionTitle: {
 		fontSize: 25,
 		fontWeight: 'bold',
-		marginBottom: 20,
+		marginBottom: 10,
 		color: colors.text,
 	},
 	bigCard: {
-		height: 250,
+		height: 420,
 		borderRadius: 10,
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
@@ -164,10 +141,21 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	cardImage: {
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
+	},
+	vignette: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
 		borderRadius: 10,
 	},
 	bigCardContent: {
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		flex: 0,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 		padding: 10,
 	},
 	smallCardContent: {
@@ -175,7 +163,7 @@ const styles = StyleSheet.create({
 		padding: 5,
 	},
 	bigCardTitle: {
-		fontSize: 20,
+		fontSize: 40,
 		fontWeight: 'bold',
 		color: '#fff',
 	},
@@ -188,7 +176,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	bigCardRating: {
-		fontSize: 14,
+		fontSize: 18,
 		color: '#fff',
 		marginLeft: 5,
 	},
@@ -197,6 +185,13 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		marginLeft: 5,
 	},
+	button: {
+		flex: 0,
+		flexDirection: 'row',
+		padding: 8,
+		backgroundColor: colors.primary,
+		borderRadius: 5,
+	},
 })
 
-export default Home
+export default MangaScreen

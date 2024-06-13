@@ -1,15 +1,9 @@
 import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-const ReaderModeButton = ({ title, icon }) => {
-	const [active, setActive] = useState(false)
-
-	const handlePress = () => {
-		setActive(!active)
-	}
-
+const ReaderModeButton = ({ title, icon, active, handlePress }) => {
 	return (
 		<TouchableOpacity
 			style={[styles.button, active ? styles.buttonActive : styles.buttonInactive]}

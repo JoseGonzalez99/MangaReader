@@ -18,7 +18,8 @@ const RootNavigation = () => {
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-			<Stack.Screen name="(readertabs)" options={{ headerShown: true }} />
+			<Stack.Screen name="reader" options={{ headerShown: false }} />
+			<Stack.Screen name="manga" options={{ headerShown: false }} />
 		</Stack>
 	)
 }

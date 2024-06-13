@@ -1,0 +1,88 @@
+[{
+    "id":"123",
+    "title":"Capitulo 1",
+    "pages":[
+      {
+        "filename": "Berserk_v0_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756295/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_001",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756329/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_001.webp"
+      },
+      {
+        "filename": "Berserk_v1_002",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756366/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_002.webp"
+      }
+    ]
+},
+{
+    "id":"124",
+    "title":"Capitulo 2",
+    "pages":[
+      {
+        "filename": "Berserk_v0_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756295/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_001",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756329/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_001.webp"
+      },
+      {
+        "filename": "Berserk_v1_002",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756366/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_002.webp"
+      }
+    ]
+},
+{
+    "id":"125",
+    "title":"Capitulo 3",
+    "pages":[
+      {
+        "filename": "Berserk_v0_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756295/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_001",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756329/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_001.webp"
+      },
+      {
+        "filename": "Berserk_v1_002",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756366/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_002.webp"
+      }
+    ]
+},
+{
+    "id":"126",
+    "title":"Capitulo 4",
+    "pages":[
+      {
+        "filename": "Berserk_v0_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_000",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756295/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_000.webp"
+      },
+      {
+        "filename": "Berserk_v1_001",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756329/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_001.webp"
+      },
+      {
+        "filename": "Berserk_v1_002",
+        "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756366/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_002.webp"
+      }
+    ]
+}]

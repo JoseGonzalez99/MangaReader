@@ -1,34 +1,26 @@
 import { colors } from '@/constants/tokens'
+import { useReaderContext } from '@/hooks/ReaderContext/useCreateReaderContext'
+import { ChapterInfo } from '@/models/Models'
 import React from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const ReaderChapterSelector = () => {
-	const chapterList = [
-		{ chapterId: 4623, chapterNumber: '1', chapterTitle: 'Capitulo 1' },
-		{ chapterId: 3242, chapterNumber: '2', chapterTitle: 'Capitulo 2' },
-		{ chapterId: 3423, chapterNumber: '3', chapterTitle: 'Capitulo 3' },
-		{ chapterId: 3424, chapterNumber: '4', chapterTitle: 'Capitulo 4' },
-		{ chapterId: 5465, chapterNumber: '5', chapterTitle: 'Capitulo 5' },
-		{ chapterId: 3456, chapterNumber: '6', chapterTitle: 'Capitulo 6' },
-		{ chapterId: 3455, chapterNumber: '7', chapterTitle: 'Capitulo 7' },
-	]
+	const { selectedChapter, setSelectedChapter, chaptersList } = useReaderContext()
 
-	const selectedChapter = { chapterId: 3423, chapterNumber: '3', chapterTitle: 'Capitulo 3' }
+	function handleChapterSelection(chapter: ChapterInfo) {
+		console.log('se selecciono este capitulo: ', chapter.title)
+		setSelectedChapter(chapter)
+	}
 
-	const renderItem = ({ item }) => (
+	const renderItem = ({ item }: { item: ChapterInfo }) => (
 		<TouchableOpacity
-			style={[
-				styles.chapterItem,
-				item.chapterId === selectedChapter.chapterId && styles.selectedChapter,
-			]}
+			onPress={() => handleChapterSelection(item)}
+			style={[styles.chapterItem, item.id === selectedChapter.id && styles.selectedChapter]}
 		>
 			<Text
-				style={[
-					styles.chapterText,
-					item.chapterId === selectedChapter.chapterId && styles.selectedChapterText,
-				]}
+				style={[styles.chapterText, item.id === selectedChapter.id && styles.selectedChapterText]}
 			>
-				{item.chapterTitle}
+				{item.title}
 			</Text>
 		</TouchableOpacity>
 	)
@@ -38,9 +30,9 @@ const ReaderChapterSelector = () => {
 			<Text style={styles.headerText}> Seleccionar capitulo </Text>
 			<View style={styles.chapterListContainer}>
 				<FlatList
-					data={chapterList}
+					data={chaptersList}
 					renderItem={renderItem}
-					keyExtractor={(item) => item.chapterId.toString()}
+					keyExtractor={(item) => item.id.toString()}
 				/>
 			</View>
 		</View>

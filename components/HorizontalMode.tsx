@@ -1,18 +1,9 @@
 import { colors } from '@/constants/tokens'
+import { Page } from '@/models/Models'
 import { FontAwesome } from '@expo/vector-icons'
 import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import ImageViewer from 'react-native-image-zoom-viewer'
-
-/*
- Componente que renderiza las imagenes de forma horizontal. 
- Recibe la lista de urls, y la posicion inicial.
-*/
-
-/*
-    Si es horizontal left: debe recibir la lista de forma invertida e iniciar en la ultima pagina.
-    Si es horizontal right: debe recibir la lista de forma normal e iniciar en la posicion 0
-*/
 
 const HeaderReader = () => {
 	return (
@@ -48,7 +39,11 @@ const ReaderFooter = () => {
 	)
 }
 
-const HorizontalMode = ({ imagesUrl, initialPos }) => {
+interface HorizontalModeProps {
+	imagesUrl: Page[]
+	initialPos: number
+}
+const HorizontalMode = ({ imagesUrl, initialPos }: HorizontalModeProps) => {
 	return (
 		<>
 			<ImageViewer

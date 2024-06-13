@@ -1,5 +1,6 @@
-
-[
+{"id":"123",
+"title":"Capitulo 1",
+"pages":[
       {
         "filename": "Berserk_v0_000",
         "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp"
@@ -37,3 +38,4 @@
         "url": "https://res.cloudinary.com/dlasojxtd/image/upload/v1714756297/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v1_009.webp"
       }
     ]
+  }

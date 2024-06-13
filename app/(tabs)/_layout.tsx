@@ -48,31 +48,11 @@ const TabsNavigation = () => {
 			/>
 
 			<Tabs.Screen
-				name="reader"
-				options={{
-					title: 'Reader',
-					tabBarIcon: ({ color }) => (
-						<FontAwesome name="book" size={20} color={color}></FontAwesome>
-					),
-				}}
-			/>
-
-			<Tabs.Screen
 				name="Users"
 				options={{
 					title: 'Usuario',
 					tabBarIcon: ({ color }) => (
 						<FontAwesome name="user" size={20} color={color}></FontAwesome>
-					),
-				}}
-			/>
-
-			<Tabs.Screen
-				name="(mangas)"
-				options={{
-					title: 'List',
-					tabBarIcon: ({ color }) => (
-						<FontAwesome name="book" size={20} color={color}></FontAwesome>
 					),
 				}}
 			/>

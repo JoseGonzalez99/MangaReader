@@ -1,31 +1,35 @@
 import chapterpagesList from '@/assets/data/berserk.json'
+import { useReaderContext } from '@/hooks/ReaderContext/useCreateReaderContext'
+import { Page } from '@/models/Models'
 import { HorizontalMode } from 'components/HorizontalMode'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-interface Page {
-	filename: string
-	url: string
-}
 const ReaderViewer = () => {
-	//variables internas del componente
-	let modeComponent //modo de lectura
+	const { selectedChapter, selectedReaderOrientation } = useReaderContext()
 	let initialPos: number = 0 //Posicion inicial
-	const readMode: string = 'horizontal-derecho'
-	const images: Page[] = chapterpagesList
+	let modeComponent //modo de lectura
+	let images: Page[] = []
 
-	switch (readMode) {
+	//Aca se podria agregar la funcion de actualizar el selectedChapterPara obtener sus paginas
+
+	switch (selectedReaderOrientation) {
 		case 'horizontal-izquierdo':
-			const reversedArray: Page[] = images.reverse()
+			if (selectedChapter.pages) {
+				images = [...selectedChapter.pages.reverse()]
+			}
 			initialPos = chapterpagesList.length - 1
 			modeComponent = (
 				<GestureHandlerRootView style={styles.container}>
-					<HorizontalMode imagesUrl={reversedArray} initialPos={initialPos} />
+					<HorizontalMode imagesUrl={images} initialPos={initialPos} />
 				</GestureHandlerRootView>
 			)
 			break
 		case 'horizontal-derecho':
+			if (selectedChapter.pages) {
+				images = [...selectedChapter.pages]
+			}
 			modeComponent = (
 				<GestureHandlerRootView style={styles.container}>
 					<HorizontalMode imagesUrl={images} initialPos={initialPos} />
@@ -33,6 +37,9 @@ const ReaderViewer = () => {
 			)
 			break
 		default:
+			if (selectedChapter.pages) {
+				images = [...selectedChapter.pages]
+			}
 			modeComponent = (
 				<GestureHandlerRootView style={styles.container}>
 					<HorizontalMode imagesUrl={images} initialPos={0} />
