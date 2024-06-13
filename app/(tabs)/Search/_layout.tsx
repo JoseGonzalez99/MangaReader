@@ -9,7 +9,8 @@ const SearchScreenLayout = () => {
 				<Stack.Screen
 					name="index"
 					options={{
-						headerTitle: '',
+						headerTitle: 'Search',
+						headerShown: false,
 					}}
 				/>
 			</Stack>

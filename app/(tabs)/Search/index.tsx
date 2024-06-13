@@ -46,9 +46,13 @@ const SearchScreen = () => {
 
 	return (
 		<ScrollView style={styles.container}>
-			<SearchBar placeholder="Buscar manga..." onChangeText={setSearchQuery} value={searchQuery} />
 			<View style={styles.section}>
 				<Text style={styles.sectionTitle}>Coleccion</Text>
+				<SearchBar
+					placeholder="Buscar manga..."
+					onChangeText={setSearchQuery}
+					value={searchQuery}
+				/>
 				<FlatList
 					data={filteredMangaHistory}
 					renderItem={({ item }) => <SmallMangaCard {...item} />}

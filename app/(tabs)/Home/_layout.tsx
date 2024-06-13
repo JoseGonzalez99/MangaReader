@@ -9,7 +9,8 @@ const HomeScreenLayout = () => {
 				<Stack.Screen
 					name="index"
 					options={{
-						headerTitle: 'GOL',
+						headerTitle: 'Home',
+						headerShown: false,
 					}}
 				/>
 			</Stack>
