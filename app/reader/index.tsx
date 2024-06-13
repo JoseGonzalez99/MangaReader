@@ -1,4 +1,4 @@
-import BottomDrawer from '@/components/BottomDrawer'
+import BottomDrawer from '@/components/Atomos/BottomDrawer'
 import { ReaderBottomTabBar } from '@/components/ReaderBottomTabBar'
 import ReaderChapterSelector from '@/components/ReaderChapterSelector'
 import ReaderParams from '@/components/ReaderParams'

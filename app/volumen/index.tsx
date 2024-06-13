@@ -1,15 +1,33 @@
 import { colors } from '@/constants/tokens'
 import { FontAwesome } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
 import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-const BigMangaCard = ({ title, rating, image }) => {
+interface BigMangaVolumenCoverCardProps {
+	title: string
+	rating: number
+	image: string
+}
+const BigMangaVolumenCoverCard = ({ title, rating, image }: BigMangaVolumenCoverCardProps) => {
 	return (
-		<ImageBackground source={{ uri: image }} style={styles.bigCard} imageStyle={styles.cardImage}>
+		<ImageBackground
+			source={{ uri: image }}
+			style={styles.bigCard}
+			imageStyle={styles.cardImage}
+			resizeMode="stretch"
+		>
+			<LinearGradient
+				// Transparencia en el centro y oscuro en los bordes
+				colors={['transparent', 'rgba(0,0,0,0.7)']}
+				start={{ x: 0.5, y: 0.6 }}
+				end={{ x: 0.5, y: 0.9 }}
+				style={styles.vignette}
+			/>
 			<View style={styles.bigCardContent}>
 				<Text style={styles.bigCardTitle}>{title}</Text>
 				<View style={styles.ratingContainer}>
-					<FontAwesome name="star" size={16} color="#FFD700" />
+					<FontAwesome name="star" size={28} color="#FFD700" />
 					<Text style={styles.bigCardRating}>{rating}</Text>
 				</View>
 			</View>
@@ -17,7 +35,11 @@ const BigMangaCard = ({ title, rating, image }) => {
 	)
 }
 
-const SmallMangaCard = ({ title, image }) => {
+interface SmallVolumenCoverMangaCardProps {
+	title: string
+	image: string
+}
+const SmallVolumenMangaCard = ({ title, image }: SmallVolumenCoverMangaCardProps) => {
 	return (
 		<ImageBackground source={{ uri: image }} style={styles.smallCard} imageStyle={styles.cardImage}>
 			<View style={styles.smallCardContent}>
@@ -27,7 +49,7 @@ const SmallMangaCard = ({ title, image }) => {
 	)
 }
 
-const Home = () => {
+const VolumenScreen = () => {
 	const volumenportada = {
 		title: 'Berserk- Tomo1',
 		rating: 4.9,
@@ -35,8 +57,6 @@ const Home = () => {
 			'https://res.cloudinary.com/dlasojxtd/image/upload/v1714756378/mangas/Berserk%20-%20Tomo%2001/c0-1/Berserk_v0_000.webp',
 	}
 
-	const volumenDescription =
-		'La historia está ambientada en una época con tintes de la Europa medieval y renacentista,en la cual se cuenta la vida de Guts, un mercenario acompañado del elfo Puck, cazando seres demoníacos llamados apóstoles.'
 	const chapters = [
 		{
 			title: 'Capitulo 1',
@@ -59,7 +79,7 @@ const Home = () => {
 		<ScrollView style={styles.container}>
 			{/*Portada del manga */}
 			<View style={styles.section}>
-				<BigMangaCard {...volumenportada} />
+				<BigMangaVolumenCoverCard {...volumenportada} />
 			</View>
 
 			{/*Volumenes del manga */}
@@ -67,7 +87,7 @@ const Home = () => {
 				<Text style={styles.sectionTitle}>Capitulos</Text>
 				<FlatList
 					data={chapters}
-					renderItem={({ item }) => <SmallMangaCard {...item} />}
+					renderItem={({ item }) => <SmallVolumenMangaCard {...item} />}
 					keyExtractor={(item, index) => index.toString()}
 					horizontal
 					showsHorizontalScrollIndicator={false}
@@ -85,42 +105,56 @@ const Home = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 10,
-		backgroundColor: '#000',
+		backgroundColor: colors.background,
 	},
 	section: {
-		marginBottom: 40,
+		padding: 10,
+		marginBottom: 20,
+		backgroundColor: colors.secundary,
+		borderRadius: 10,
 	},
 	buttonSection: {
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		padding: 10,
 	},
 	sectionTitle: {
 		fontSize: 25,
 		fontWeight: 'bold',
-		marginBottom: 20,
+		marginBottom: 10,
 		color: colors.text,
 	},
 	bigCard: {
-		height: 250,
-		borderRadius: 10,
+		height: 420,
+		borderRadius: 0,
 		overflow: 'hidden',
 		justifyContent: 'flex-end',
 	},
 	smallCard: {
 		height: 150,
 		width: 100,
-		borderRadius: 10,
+		borderRadius: 5,
 		overflow: 'hidden',
-		marginRight: 10,
+		margin: 5,
 		justifyContent: 'flex-end',
 	},
 	cardImage: {
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
+	},
+	vignette: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
 		borderRadius: 10,
 	},
 	bigCardContent: {
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		flex: 0,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 		padding: 10,
 	},
 	smallCardContent: {
@@ -128,7 +162,7 @@ const styles = StyleSheet.create({
 		padding: 5,
 	},
 	bigCardTitle: {
-		fontSize: 20,
+		fontSize: 40,
 		fontWeight: 'bold',
 		color: '#fff',
 	},
@@ -141,15 +175,51 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	bigCardRating: {
-		fontSize: 14,
+		fontSize: 18,
 		color: '#fff',
 		marginLeft: 5,
 	},
-	sinopsistext: {
+	sinopsisText: {
 		fontSize: 15,
 		color: '#fff',
 		marginLeft: 5,
 	},
+	readButton: {
+		flex: 0,
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
+		padding: 8,
+		backgroundColor: colors.primary,
+		borderRadius: 35,
+	},
+	favoriteButton: {
+		flex: 0,
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
+		paddingLeft: 15,
+		paddingRight: 15,
+		backgroundColor: colors.primary,
+		borderRadius: 35,
+	},
+	buttonText: {
+		color: colors.text,
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	buttonTextBold: {
+		color: colors.text,
+		fontSize: 22,
+		fontWeight: 'bold',
+	},
+	volumeContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+	},
+	volumeItem: {
+		width: '33.33%',
+	},
 })
 
-export default Home
+export default VolumenScreen

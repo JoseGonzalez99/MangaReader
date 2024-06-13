@@ -1,4 +1,4 @@
-import SearchBar from '@/components/SearchBar'
+import SearchBar from '@/components/Atomos/SearchBar'
 import { colors } from '@/constants/tokens'
 import React, { useState } from 'react'
 import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'

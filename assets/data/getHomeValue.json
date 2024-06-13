@@ -1,0 +1,30 @@
+{
+    "lastReaded":{
+            "id":1,
+            "title":"Attack on Titan",
+            "rating":4.9,
+            "image":"https://4.bp.blogspot.com/-bFI3nnZiBy4/WIpe-AqSKqI/AAAAAAAAALs/25vg-stsz2oTUVVP7-11HqHJZxMGwYNwgCEw/s1600/shingeki_no_kyojin_poster_by_thebellealexandra-d75f1z1.png"                
+        },
+    "historial":[
+		{
+            "id":2,
+			"title": "Naruto",
+            "rating":4.3,
+			"image": "https://th.bing.com/th/id/OIP.EjIl-g-wSybkVtNApisWMwHaLH?rs=1&pid=ImgDetMain",
+		},
+		{
+            "id":3,
+			"title": "One Piece",
+            "rating":5,
+			"image": "https://th.bing.com/th/id/OIP.de93te5wkHMrpY37jdetjAHaLG?rs=1&pid=ImgDetMain",
+		},
+		{
+            "id":4,
+			"title": "Bleach",
+            "rating":4,
+			"image":
+				"https://th.bing.com/th/id/R.98dffbb5e325f0b41c817bda7bd9cda2?rik=11AIeHrwXfNO2A&riu=http%3a%2f%2fes.web.img3.acsta.net%2fr_1280_720%2fpictures%2f16%2f02%2f03%2f17%2f47%2f271248.jpg&ehk=1TFFCPiuhlVB70HSMlpD0YbCZzMEraquP3KvYGjjUmw%3d&risl=&pid=ImgRaw&r=0"
+		}
+	]
+    
+    }
