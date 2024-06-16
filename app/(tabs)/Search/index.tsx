@@ -16,13 +16,6 @@ const SmallMangaCard = ({ title, image }) => {
 const SearchScreen = () => {
 	const [searchQuery, setSearchQuery] = useState('')
 
-	const lastReadManga = {
-		title: 'Attack on Titan',
-		rating: 4.8,
-		image:
-			'https://4.bp.blogspot.com/-bFI3nnZiBy4/WIpe-AqSKqI/AAAAAAAAALs/25vg-stsz2oTUVVP7-11HqHJZxMGwYNwgCEw/s1600/shingeki_no_kyojin_poster_by_thebellealexandra-d75f1z1.png',
-	}
-
 	const mangaHistory = [
 		{
 			title: 'Naruto',

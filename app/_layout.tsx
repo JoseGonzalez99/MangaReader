@@ -21,6 +21,7 @@ const RootNavigation = () => {
 			<Stack.Screen name="reader" options={{ headerShown: false }} />
 			<Stack.Screen name="manga" options={{ headerShown: false }} />
 			<Stack.Screen name="volumen" options={{ headerShown: false }} />
+			<Stack.Screen name="login" options={{ headerShown: false }} />
 		</Stack>
 	)
 }
